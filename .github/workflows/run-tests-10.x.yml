@@ -49,7 +49,7 @@ jobs:
         run: composer update --${{ matrix.dependency-version }} --prefer-dist --no-interaction
 
       - name: Start up cluster
-        run: ./start-cluster.sh || { cat /.cluser/*.log; false; }
+        run: ./start-cluster.sh || { cat ./cluser/*.log; false; }
 
       - name: Setup Problem Matches
         run: |
