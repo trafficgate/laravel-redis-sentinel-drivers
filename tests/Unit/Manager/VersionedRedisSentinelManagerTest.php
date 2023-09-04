@@ -13,6 +13,7 @@ use Monospice\LaravelRedisSentinel\Manager\VersionedRedisSentinelManager;
 use Monospice\LaravelRedisSentinel\Tests\Support\ApplicationFactory;
 use PHPUnit\Framework\TestCase as TestCase;
 use Predis\Connection\Aggregate\SentinelReplication;
+use ReflectionObject;
 
 class VersionedRedisSentinelManagerTest extends TestCase
 {
