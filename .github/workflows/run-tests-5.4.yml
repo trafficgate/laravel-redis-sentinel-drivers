@@ -13,8 +13,6 @@ jobs:
                 framework: [laravel, lumen]
                 laravel-version: [">=5.4.0 <5.4.20", ">=5.4.20 <5.5.0"]
                 horizon: [0, 1]
-                include:
-
                 exclude:
                   # lumen doesn't support horizon
                   - framework: lumen

@@ -13,8 +13,6 @@ jobs:
                 framework: [laravel, lumen]
                 laravel-version: ["9.*"]
                 horizon: [0, 1]
-                include: 
-
                 exclude:
                   # lumen doesn't support horizon
                   - framework: lumen
