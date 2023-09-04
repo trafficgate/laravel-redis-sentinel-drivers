@@ -103,7 +103,7 @@ class PredisConnectionTest extends TestCase
         $attribute->setAccessible(true);
         $this->assertEquals(99, $attribute->getValue($this->subject));
 
-        $attribute = $reflector->getPropert('retryWait');
+        $attribute = $reflector->getProperty('retryWait');
         $attribute->setAccessible(true);
         $this->assertEquals(9999, $attribute->getValue($this->subject));
     }
@@ -136,7 +136,7 @@ class PredisConnectionTest extends TestCase
         $attribute->setAccessible(true);
         $this->assertEquals(99, $attribute->getValue($this->subject));
 
-        $attribute = $reflector->getPropert('retryWait');
+        $attribute = $reflector->getProperty('retryWait');
         $attribute->setAccessible(true);
         $this->assertEquals(9999, $attribute->getValue($this->subject));
     }
