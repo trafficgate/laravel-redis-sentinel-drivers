@@ -32,6 +32,8 @@ jobs:
           coverage: none
 
       - uses: shogo82148/actions-setup-redis@v1
+        with:
+          auto-start: "false"
 
       - name: Setup dependencies
         run: |
@@ -51,7 +53,7 @@ jobs:
         run: composer update --${{ matrix.dependency-version }} --prefer-dist --no-interaction
 
       - name: Start up cluster
-        run: ./start-cluster.sh || { cat ./cluser/*.log; false; }
+        run: SUPERVISE=no ./start-cluster.sh || { cat ./cluster/*.log; false; }
 
       - name: Setup Problem Matches
         run: |
