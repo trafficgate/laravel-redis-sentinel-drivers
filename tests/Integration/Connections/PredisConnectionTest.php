@@ -2,6 +2,7 @@
 
 namespace Monospice\LaravelRedisSentinel\Tests\Integration\Connections;
 
+use DMS\PHPUnitExtensions\ArraySubset\ArraySubsetAsserts;
 use Mockery;
 use Monospice\LaravelRedisSentinel\Connections\PredisConnection;
 use Monospice\LaravelRedisSentinel\Tests\Support\DummyException;
@@ -14,6 +15,8 @@ use Predis\Transaction\MultiExec;
 
 class PredisConnectionTest extends IntegrationTestCase
 {
+    use ArraySubsetAsserts;
+
     /**
      * The instance of the Predis client wrapper under test.
      *
