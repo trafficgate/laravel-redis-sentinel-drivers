@@ -501,7 +501,7 @@ class LoaderTest extends TestCase
     {
         $this->config->set('horizon.use', 'not-a-connection');
 
-        $this->setExpectedException(UnexpectedValueException::class);
+        $this->expectException(UnexpectedValueException::class);
 
         $this->loader->loadHorizonConfiguration();
     }

@@ -203,7 +203,7 @@ class RedisSentinelServiceProviderTest extends TestCase
         $this->app->config->set('redis-sentinel.auto_boot', false);
         $this->provider->register();
 
-        $this->setExpectedException(\InvalidArgumentException::class);
+        $this->expectException(\InvalidArgumentException::class);
 
         // It didn't auto boot
         $this->assertNull($this->app->cache->store('redis-sentinel'));
