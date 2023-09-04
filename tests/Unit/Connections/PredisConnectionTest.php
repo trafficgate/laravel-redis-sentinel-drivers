@@ -11,6 +11,7 @@ use PHPUnit\Framework\TestCase as TestCase;
 use Predis\ClientInterface;
 use Predis\Connection\Aggregate\ReplicationInterface;
 use Predis\Transaction\MultiExec;
+use ReflectionObject;
 
 class PredisConnectionTest extends TestCase
 {
@@ -96,8 +97,15 @@ class PredisConnectionTest extends TestCase
         $this->subject = new PredisConnection($this->clientMock, $sentinelOpts);
 
         // This class provides no public interface to detect these values
-        $this->assertAttributeEquals(99, 'retryLimit', $this->subject);
-        $this->assertAttributeEquals(9999, 'retryWait', $this->subject);
+        $reflector = new ReflectionObject($this->subject);
+
+        $attribute = $reflector->getProperty('retryLimit');
+        $attribute->setAccessible(true);
+        $this->assertEquals(99, $attribute->getValue($this->subject));
+
+        $attribute = $reflector->getPropert('retryWait');
+        $attribute->setAccessible(true);
+        $this->assertEquals(9999, $attribute->getValue($this->subject));
     }
 
     public function testDisallowsInvalidSentinelOptions()
@@ -122,8 +130,15 @@ class PredisConnectionTest extends TestCase
         }
 
         // This class provides no public interface to detect these values
-        $this->assertAttributeEquals(99, 'retryLimit', $this->subject);
-        $this->assertAttributeEquals(9999, 'retryWait', $this->subject);
+        $reflector = new ReflectionObject($this->subject);
+
+        $attribute = $reflector->getProperty('retryLimit');
+        $attribute->setAccessible(true);
+        $this->assertEquals(99, $attribute->getValue($this->subject));
+
+        $attribute = $reflector->getPropert('retryWait');
+        $attribute->setAccessible(true);
+        $this->assertEquals(9999, $attribute->getValue($this->subject));
     }
 
     public function testProvidesTransactionAbstraction()

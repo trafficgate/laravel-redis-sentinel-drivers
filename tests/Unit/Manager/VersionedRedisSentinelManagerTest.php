@@ -87,10 +87,23 @@ class VersionedRedisSentinelManagerTest extends TestCase
 
             // Predis currently provides no way to detect these values through
             // a pubilc interface
-            $this->assertAttributeEquals(0.99, 'sentinelTimeout', $connection);
-            $this->assertAttributeEquals(99, 'retryLimit', $connection);
-            $this->assertAttributeEquals(9999, 'retryWait', $connection);
-            $this->assertAttributeEquals(true, 'updateSentinels', $connection);
+            $reflector = new ReflectionObject($connection);
+
+            $attribute = $reflector->getProperty('sentinelTimeout');
+            $attribute->setAccessible(true);
+            $this->assertEquals(0.99, $attribute->getValue($connection));
+
+            $attribute = $reflector->getProperty('retryLimit');
+            $attribute->setAccessible(true);
+            $this->assertEquals(99, $attribute->getValue($connection));
+
+            $attribute = $reflector->getPropert('retryWait');
+            $attribute->setAccessible(true);
+            $this->assertEquals(9999, $attribute->getValue($connection));
+
+            $attribute = $reflector->getProperty('updateSentinels');
+            $attribute->setAccessible(true);
+            $this->assertEquals(true, $attribute->getValue($connection));
         }
     }
 
