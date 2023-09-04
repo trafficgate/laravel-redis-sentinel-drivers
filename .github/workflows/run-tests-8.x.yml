@@ -18,7 +18,7 @@ jobs:
           - framework: lumen
             horizon: 0
 
-    name: P${{ matrix.php }} - ${{ matrix.dependency-version }}
+    name: PHP (${{ matrix.php }}) - Framework (${{ matrix.framework }}) - Horizon (${{ matrix.horizon }}) - Composer (${{ matrix.dependency-version }})
 
     steps:
       - name: Checkout code
