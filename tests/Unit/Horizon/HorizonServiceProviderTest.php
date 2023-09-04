@@ -11,7 +11,7 @@ use Monospice\LaravelRedisSentinel\Horizon\HorizonServiceProvider;
 use Monospice\LaravelRedisSentinel\RedisSentinelManager;
 use Monospice\LaravelRedisSentinel\RedisSentinelServiceProvider;
 use Monospice\LaravelRedisSentinel\Tests\Support\ApplicationFactory;
-use PHPUnit_Framework_TestCase as TestCase;
+use PHPUnit\Framework\TestCase as TestCase;
 
 class HorizonServiceProviderTest extends TestCase
 {

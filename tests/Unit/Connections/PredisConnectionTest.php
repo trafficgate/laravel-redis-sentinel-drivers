@@ -7,7 +7,7 @@ use Illuminate\Redis\Connections\Connection;
 use Mockery;
 use Monospice\LaravelRedisSentinel\Connections\PredisConnection;
 use Monospice\SpicyIdentifiers\DynamicMethod;
-use PHPUnit_Framework_TestCase as TestCase;
+use PHPUnit\Framework\TestCase as TestCase;
 use Predis\ClientInterface;
 use Predis\Connection\Aggregate\ReplicationInterface;
 use Predis\Transaction\MultiExec;

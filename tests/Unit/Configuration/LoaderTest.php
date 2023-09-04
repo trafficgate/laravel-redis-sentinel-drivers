@@ -4,7 +4,7 @@ namespace Monospice\LaravelRedisSentinel\Tests\Unit\Configuration;
 
 use Monospice\LaravelRedisSentinel\Configuration\Loader;
 use Monospice\LaravelRedisSentinel\Tests\Support\ApplicationFactory;
-use PHPUnit_Framework_TestCase as TestCase;
+use PHPUnit\Framework\TestCase as TestCase;
 use UnexpectedValueException;
 
 class LoaderTest extends TestCase

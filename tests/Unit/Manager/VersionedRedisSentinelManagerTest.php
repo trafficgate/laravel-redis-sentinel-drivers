@@ -11,7 +11,7 @@ use Mockery;
 use Monospice\LaravelRedisSentinel\Contracts\Factory as RedisSentinelFactory;
 use Monospice\LaravelRedisSentinel\Manager\VersionedRedisSentinelManager;
 use Monospice\LaravelRedisSentinel\Tests\Support\ApplicationFactory;
-use PHPUnit_Framework_TestCase as TestCase;
+use PHPUnit\Framework\TestCase as TestCase;
 use Predis\Connection\Aggregate\SentinelReplication;
 
 class VersionedRedisSentinelManagerTest extends TestCase

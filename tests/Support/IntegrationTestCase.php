@@ -5,7 +5,7 @@ namespace Monospice\LaravelRedisSentinel\Tests\Support;
 use Exception;
 use Monospice\LaravelRedisSentinel\Tests\Support\PubSubReader;
 use Monospice\LaravelRedisSentinel\Tests\Support\TestClient;
-use PHPUnit_Framework_TestCase as TestCase;
+use PHPUnit\Framework\TestCase as TestCase;
 use Predis\Client;
 use Predis\Response\Status as ResponseStatus;
 

@@ -6,7 +6,7 @@ use Mockery;
 use Monospice\LaravelRedisSentinel\RedisSentinel;
 use Monospice\LaravelRedisSentinel\RedisSentinelManager;
 use Monospice\LaravelRedisSentinel\Tests\Support\ApplicationFactory;
-use PHPUnit_Framework_TestCase as TestCase;
+use PHPUnit\Framework\TestCase as TestCase;
 
 class RedisSentinelFacadeTest extends TestCase
 {

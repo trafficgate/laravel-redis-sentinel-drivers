@@ -8,7 +8,7 @@ use Monospice\LaravelRedisSentinel\Contracts\Factory as RedisSentinelFactory;
 use Monospice\LaravelRedisSentinel\Manager\VersionedRedisSentinelManager;
 use Monospice\LaravelRedisSentinel\RedisSentinelManager;
 use Mockery;
-use PHPUnit_Framework_TestCase as TestCase;
+use PHPUnit\Framework\TestCase as TestCase;
 
 class RedisSentinelManagerTest extends TestCase
 {

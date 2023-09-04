@@ -9,7 +9,7 @@ use Monospice\LaravelRedisSentinel\Configuration\Loader as ConfigurationLoader;
 use Monospice\LaravelRedisSentinel\Manager\VersionedManagerFactory;
 use Monospice\LaravelRedisSentinel\Contracts\Factory as ManagerContract;
 use Monospice\LaravelRedisSentinel\Tests\Support\ApplicationFactory;
-use PHPUnit_Framework_TestCase as TestCase;
+use PHPUnit\Framework\TestCase as TestCase;
 
 class VersionedManagerFactoryTest extends TestCase
 {
