@@ -74,9 +74,9 @@ jobs:
               EXCLUDED_GROUPS+=(horizon)
           fi
 
-          EXCLUDE_GROUP="--exclude-group $(IFS=","; echo ${EXCLUDED_GROUPS[*]})"
-          if [ "${EXCLUDE_GROUPS}" == "--exclude-group " ]; then
-              EXCLUDE_GROUP=''
+          EXCLUDE_GROUP_SWITCH="--exclude-group $(IFS=","; echo ${EXCLUDED_GROUPS[*]})"
+          if [ "${EXCLUDE_GROUP_SWITCH}" == "--exclude-group " ]; then
+              EXCLUDE_GROUP_SWITCH=''
           fi
 
-          vendor/bin/phpunit ${EXCLUDE_GROUP}
+          vendor/bin/phpunit ${EXCLUDE_GROUP_SWITCH}
