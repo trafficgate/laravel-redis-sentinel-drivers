@@ -50,7 +50,7 @@ abstract class IntegrationTestCase extends TestCase
      *
      * @return void
      */
-    public function setUp()
+    public function setUp(): void
     {
         $this->skipIntegrationTestUnlessConfigured();
         $this->configureTest();
@@ -65,7 +65,7 @@ abstract class IntegrationTestCase extends TestCase
      *
      * @return void
      */
-    public function tearDown()
+    public function tearDown(): void
     {
         $this->testClient->publish('>>>> TEST FINISHED', $this->getFullName());
 

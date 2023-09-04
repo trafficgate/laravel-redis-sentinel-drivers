@@ -33,7 +33,7 @@ class VersionedManagerFactoryTest extends TestCase
      *
      * @return void
      */
-    public function setUp()
+    public function setUp(): void
     {
         $this->configLoaderMock = Mockery::mock(ConfigurationLoader::class);
         $this->configLoaderMock->isLumen = ApplicationFactory::isLumen();
@@ -53,7 +53,7 @@ class VersionedManagerFactoryTest extends TestCase
      *
      * @return void
      */
-    public function tearDown()
+    public function tearDown(): void
     {
         parent::tearDown();
 

@@ -31,7 +31,7 @@ class RedisSentinelManagerTest extends TestCase
      *
      * @return void
      */
-    public function setUp()
+    public function setUp(): void
     {
         $this->versionedManagerMock
             = Mockery::mock(VersionedRedisSentinelManager::class);
@@ -44,7 +44,7 @@ class RedisSentinelManagerTest extends TestCase
      *
      * @return void
      */
-    public function tearDown()
+    public function tearDown(): void
     {
         Mockery::close();
     }

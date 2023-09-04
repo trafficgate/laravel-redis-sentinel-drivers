@@ -15,7 +15,7 @@ class RedisSentinelFacadeTest extends TestCase
      *
      * @return void
      */
-    public function tearDown()
+    public function tearDown(): void
     {
         Mockery::close();
     }

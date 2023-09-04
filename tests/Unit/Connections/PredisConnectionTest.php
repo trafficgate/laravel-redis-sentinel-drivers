@@ -55,7 +55,7 @@ class PredisConnectionTest extends TestCase
      *
      * @return void
      */
-    public function setUp()
+    public function setUp(): void
     {
         $this->clientMock = Mockery::mock(ClientInterface::class);
 
@@ -67,7 +67,7 @@ class PredisConnectionTest extends TestCase
      *
      * @return void
      */
-    public function tearDown()
+    public function tearDown(): void
     {
         Mockery::close();
     }

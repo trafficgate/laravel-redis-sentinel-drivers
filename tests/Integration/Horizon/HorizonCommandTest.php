@@ -46,7 +46,7 @@ class HorizonCommandTest extends IntegrationTestCase
      *
      * @return void
      */
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
 
@@ -71,7 +71,7 @@ class HorizonCommandTest extends IntegrationTestCase
      *
      * @return void
      */
-    public function tearDown()
+    public function tearDown(): void
     {
         if ($this->supervisorStarted) {
             $this->artisan->call('horizon:terminate');

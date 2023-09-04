@@ -34,7 +34,7 @@ class HorizonServiceProviderTest extends TestCase
      *
      * @return void
      */
-    public function setUp()
+    public function setUp(): void
     {
         $this->app = ApplicationFactory::make();
         $this->app->config->set(require(__DIR__ . '/../../stubs/config.php'));
