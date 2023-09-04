@@ -74,7 +74,7 @@ jobs:
               EXCLUDED_GROUPS+=(horizon)
           fi
 
-          EXCLUDE_GROUPS="--exclude-group $(IFS=","; echo ${EXCLUDED_GROUPS[*]})"
+          EXCLUDE_GROUP="--exclude-group $(IFS=","; echo ${EXCLUDED_GROUPS[*]})"
           if [ "${EXCLUDE_GROUPS}" == "--exclude-group " ]; then
               EXCLUDE_GROUP=''
           fi
