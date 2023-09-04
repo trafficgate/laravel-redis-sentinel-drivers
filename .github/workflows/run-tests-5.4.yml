@@ -62,14 +62,19 @@ jobs:
 
       - name: Execute tests
         run: |
-          EXCLUDE_GROUPS="+laravel-only,-horizon"
+          EXCLUDED_GROUPS=()
 
           if [ "${{ matrix.framework }}" == "lumen" ]; then
-              EXCLUDE_GROUPS="-horizon"
+              EXCLUDED_GROUPS+=(laravel)
           fi
 
-          if [ "${{ matrix.horizon }}" == "1" ]; then
-              EXCLUDE_GROUPS=""
+          if [ "${{ matrix.horizon }}" == "0" ]; then
+              EXCLUDED_GROUPS+=(horizon)
           fi
 
-          vendor/bin/phpunit --exclude-group ${EXCLUDE_GROUPS}
+          EXCLUDE_GROUPS="--exclude-group $(IFS=","; echo ${EXCLUDED_GROUPS[*]})"
+          if [ "${EXCLUDE_GROUPS}" == "--exclude-group " ]; then
+              EXCLUDE_GROUP=''
+          fi
+
+          vendor/bin/phpunit ${EXCLUDE_GROUP}
