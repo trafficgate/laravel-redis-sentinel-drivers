@@ -1,4 +1,4 @@
-name: run-tests
+name: run-tests-5.6
 
 on: [push, pull_request]
 
