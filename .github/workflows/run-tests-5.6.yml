@@ -49,6 +49,8 @@ jobs:
               composer remove --dev --no-update "laravel/horizon"
           fi
 
+          cat composer.json
+
       - name: Install dependencies
         run: composer update --${{ matrix.dependency-version }} --prefer-dist --no-interaction
 
