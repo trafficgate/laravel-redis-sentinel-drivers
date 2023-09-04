@@ -31,6 +31,8 @@ jobs:
           extensions: zip
           coverage: none
 
+      - uses: shogo82148/actions-setup-redis@v1
+
       - name: Setup dependencies
         run: |
           if [ "${{ matrix.framework }}" == "laravel" ]; then
