@@ -36,7 +36,7 @@ jobs:
                     if [ "${{ matrix.framework }}" == "laravel" ]; then
                         composer remove --dev --no-update "laravel/lumen-framework"
                         composer require --dev --no-update "laravel/laravel-framework:${{ matrix.laravel-version }}"
-                    else if [ "${{ matrix.framework }}" == "lumen" ]; then
+                    elif [ "${{ matrix.framework }}" == "lumen" ]; then
                         composer remove --dev --no-update "laravel/laravel-framework"
                         composer require --dev --no-update "laravel/lumen-framework:${{ matrix.laravel-version }}"
                     fi
