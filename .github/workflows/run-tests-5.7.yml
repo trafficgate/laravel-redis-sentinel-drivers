@@ -3,69 +3,69 @@ name: run-tests-5.7
 on: [push, pull_request]
 
 jobs:
-    tests:
-        runs-on: ubuntu-latest
-        strategy:
-            fail-fast: false
-            matrix:
-                php: [7.1, 7.2, 7.3]
-                dependency-version: [prefer-lowest, prefer-stable]
-                framework: [laravel, lumen]
-                laravel-version: ["5.7.*"]
-                horizon: [0, 1]
-                exclude:
-                  # lumen doesn't support horizon
-                  - framework: lumen
-                    horizon: 0
+  tests:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        php: [7.1, 7.2, 7.3]
+        dependency-version: [prefer-lowest, prefer-stable]
+        framework: [laravel, lumen]
+        laravel-version: ["5.7.*"]
+        horizon: [0, 1]
+        exclude:
+          # lumen doesn't support horizon
+          - framework: lumen
+            horizon: 0
 
-        name: P${{ matrix.php }} - ${{ matrix.dependency-version }}
+    name: P${{ matrix.php }} - ${{ matrix.dependency-version }}
 
-        steps:
-            -   name: Checkout code
-                uses: actions/checkout@v2
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
 
-            -   name: Setup PHP
-                uses: shivammathur/setup-php@v2
-                with:
-                    php-version: ${{ matrix.php }}
-                    extensions: zip
-                    coverage: none
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php }}
+          extensions: zip
+          coverage: none
 
-            -   name: Setup dependencies
-                run: |
-                    if [ "${{ matrix.framework }}" == "laravel" ]; then
-                        composer remove --dev --no-update "laravel/lumen-framework"
-                        composer require --dev --no-update "laravel/laravel-framework:${{ matrix.laravel-version }}"
-                    elif [ "${{ matrix.framework }}" == "lumen" ]; then
-                        composer remove --dev --no-update "laravel/laravel-framework"
-                        composer require --dev --no-update "laravel/lumen-framework:${{ matrix.laravel-version }}"
-                    fi
+      - name: Setup dependencies
+        run: |
+          if [ "${{ matrix.framework }}" == "laravel" ]; then
+              composer remove --dev --no-update "laravel/lumen-framework"
+              composer require --dev --no-update "laravel/laravel-framework:${{ matrix.laravel-version }}"
+          elif [ "${{ matrix.framework }}" == "lumen" ]; then
+              composer remove --dev --no-update "laravel/laravel-framework"
+              composer require --dev --no-update "laravel/lumen-framework:${{ matrix.laravel-version }}"
+          fi
 
-                    if [ "${{ matrix.horizon }}" == "0" ]; then
-                        composer remove --dev --no-update "laravel/horizon"
-                    fi
+          if [ "${{ matrix.horizon }}" == "0" ]; then
+              composer remove --dev --no-update "laravel/horizon"
+          fi
 
-            -   name: Install dependencies
-                run: composer update --${{ matrix.dependency-version }} --prefer-dist --no-interaction
+      - name: Install dependencies
+        run: composer update --${{ matrix.dependency-version }} --prefer-dist --no-interaction
 
-            -   name: Start up cluster
-                run: ./start-cluster.sh || { cat /.cluser/*.log; false; }
+      - name: Start up cluster
+        run: ./start-cluster.sh || { cat /.cluser/*.log; false; }
 
-            -   name: Setup Problem Matches
-                run: |
-                    echo "::add-matcher::${{ runner.tool_cache }}/php.json"
-                    echo "::add-matcher::${{ runner.tool_cache }}/phpunit.json"
+      - name: Setup Problem Matches
+        run: |
+          echo "::add-matcher::${{ runner.tool_cache }}/php.json";
+          echo "::add-matcher::${{ runner.tool_cache }}/phpunit.json";
 
-            -   name: Execute tests
-                run: |
-                    EXCLUDE_GROUPS="+laravel-only,-horizon"
+      - name: Execute tests
+        run: |
+          EXCLUDE_GROUPS="+laravel-only,-horizon"
 
-                    if [ "${{ matrix.framework }}" == "lumen" ]; then
-                        EXCLUDE_GROUPS="-horizon"
-                    fi
+          if [ "${{ matrix.framework }}" == "lumen" ]; then
+              EXCLUDE_GROUPS="-horizon"
+          fi
 
-                    if [ "${{ matrix.horizon }}" == "1" ]; then
-                        EXCLUDE_GROUPS=""
-                    fi
+          if [ "${{ matrix.horizon }}" == "1" ]; then
+              EXCLUDE_GROUPS=""
+          fi
 
-                    vendor/bin/phpunit --exclude-group ${EXCLUDE_GROUPS}
+          vendor/bin/phpunit --exclude-group ${EXCLUDE_GROUPS}
