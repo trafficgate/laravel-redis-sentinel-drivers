@@ -18,6 +18,9 @@ jobs:
           - framework: lumen
             horizon: 0
 
+          - framework: lumen
+            php: 8.0
+
     name: PHP (${{ matrix.php }}) - Framework (${{ matrix.framework }}) - Horizon (${{ matrix.horizon }}) - Composer (${{ matrix.dependency-version }})
 
     steps:
