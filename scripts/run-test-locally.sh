@@ -5,5 +5,5 @@ VERSION=${2:-'10.*'}
 HORIZON=${3:-'1'}
 COMPOSER_SWITCHES=${4:-''}
 
-./scripts/install-dependencies.sh "${FRAMEWORK}" "${VERSION}" "${HORIZON}" "${COMPOSER_SWITCHES}"
+./scripts/install-dependencies-locally.sh "${FRAMEWORK}" "${VERSION}" "${HORIZON}" "${COMPOSER_SWITCHES}"
 ./scripts/phpunit.sh "${FRAMEWORK}" "${VERSION}" "${HORIZON}"

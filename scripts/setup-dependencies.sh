@@ -5,8 +5,6 @@ VERSION=${2:-'10.*'}
 HORIZON=${3:-'1'}
 COMPOSER_SWITCHES=${4:-''}
 
-cp composer.json composer.json.org
-
 if [ "${FRAMEWORK}" == "laravel" ]; then
     composer remove --dev --no-update "laravel/lumen-framework"
     composer require --dev --no-update "laravel/framework:${VERSION}"
@@ -20,8 +18,3 @@ if [ "${HORIZON}" == "0" ]; then
 fi
 
 cat composer.json
-
-composer update ${COMPOSER_SWITCHES} --prefer-dist --no-interaction
-
-cp composer.json.org composer.json
-rm composer.json.org

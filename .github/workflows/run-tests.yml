@@ -65,7 +65,7 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
@@ -74,8 +74,22 @@ jobs:
           extensions: zip
           coverage: none
 
-      - name: Install dependencies
-        run: ./scripts/install-dependencies.sh "${{ matrix.framework }}" "${{ matrix.laravel-version }}" "${{ matrix.horizon }}" "--${{ matrix.dependency-version }}"
+      - name: Setup dependencies
+        run: ./scripts/setup-dependencies.sh "${{ matrix.framework }}" "${{ matrix.laravel-version }}" "${{ matrix.horizon }}" "--${{ matrix.dependency-version }}"
+
+      - name: Get Composer Cache Directory
+        id: composer-cache
+        run: echo "dir=$(composer config cache-files-dir)" >> $GITHUB_OUTPUT
+
+      - name: Cache Composer dependencies
+        uses: actions/cache@v3
+        with:
+          path: ${{ steps.composer-cache.outputs.dir }}
+          key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
+          restore-keys: ${{ runner.os }}-composer-
+
+      - name: Install composer dependencies
+        run: composer install --${{ matrix.dependency-version }} --prefer-dist --no-interaction
 
       - name: Setup Problem Matches
         run: |
