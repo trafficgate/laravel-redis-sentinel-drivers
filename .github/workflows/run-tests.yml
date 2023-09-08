@@ -17,20 +17,30 @@ jobs:
           # lumen doesn't support horizon
           - framework: lumen
             horizon: 1
+          # horizon for laravel 6/7 does not support PHP 8+
+          - laravel-version: "6.*"
+            horizon: 1
+          - laravel-version: "7.*"
+            horizon: 1
+          # Lumen 6/7 does not support PHP >=8.0
           - framework: lumen
             laravel-version: "6.*"
           - framework: lumen
             laravel-version: "7.*"
+          # Laravel 6 does not support PHP >=8.1
           - laravel-version: "6.*"
             php: 8.1
           - laravel-version: "6.*"
             php: 8.2
+          # Laravel 7 does not support PHP >=8.1
           - laravel-version: "7.*"
             php: 8.1
           - laravel-version: "7.*"
             php: 8.2
+          # Laravel 8 does not support PHP >=8.2
           - laravel-version: "8.*"
             php: 8.2
+          # Laravel 10 does not support PHP <=8.0
           - laravel-version: "10.*"
             php: 8.0
 
