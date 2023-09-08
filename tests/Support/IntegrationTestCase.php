@@ -183,7 +183,7 @@ abstract class IntegrationTestCase extends TestCase
     public function switchToMinimumTimeout()
     {
         return $this->config['options']['parameters']['read_write_timeout']
-            = TEST_MIN_CONNECTION_TIMEOUT;
+            = getenv('TEST_MIN_CONNECTION_TIMEOUT');
     }
 
     /**
@@ -194,15 +194,15 @@ abstract class IntegrationTestCase extends TestCase
      */
     private function configureTest()
     {
-        $sentinels = explode(',', TEST_REDIS_SENTINEL_HOST);
+        $sentinels = explode(',', getenv('TEST_REDIS_SENTINEL_HOST'));
 
         $options = [
-            'service' => TEST_REDIS_SENTINEL_SERVICE,
+            'service' => getenv('TEST_REDIS_SENTINEL_SERVICE'),
             'replication' => 'sentinel',
             'parameters' => [
-                'database' => TEST_REDIS_DATABASE,
-                'timeout' => TEST_MAX_CONNECTION_TIMEOUT,
-                'read_write_timeout' => TEST_MAX_CONNECTION_TIMEOUT,
+                'database' => getenv('TEST_REDIS_DATABASE'),
+                'timeout' => getenv('TEST_MAX_CONNECTION_TIMEOUT'),
+                'read_write_timeout' => getenv('TEST_MAX_CONNECTION_TIMEOUT'),
             ],
         ];
 
@@ -230,23 +230,23 @@ abstract class IntegrationTestCase extends TestCase
             $this->markTestSkipped($this->skipTestReason);
         }
 
-        if (! defined('TEST_REDIS_SENTINEL_HOST')) {
+        if (! getenv('TEST_REDIS_SENTINEL_HOST')) {
             $this->skipBecause('No Sentinel hosts configured.');
         }
 
-        if (! defined('TEST_REDIS_SENTINEL_SERVICE')) {
+        if (! getenv('TEST_REDIS_SENTINEL_SERVICE')) {
             $this->skipBecause('No Sentinel service configured.');
         }
 
-        if (! defined('TEST_REDIS_DATABASE')) {
+        if (! getenv('TEST_REDIS_DATABASE')) {
             $this->skipBecause('No Redis database number configured.');
         }
 
-        if (! defined('TEST_MAX_CONNECTION_TIMEOUT')) {
+        if (! getenv('TEST_MAX_CONNECTION_TIMEOUT')) {
             $this->skipBecause('No maximum connection timeout configured.');
         }
 
-        if (! defined('TEST_MIN_CONNECTION_TIMEOUT')) {
+        if (! getenv('TEST_MIN_CONNECTION_TIMEOUT')) {
             $this->skipBecause('No minimum connection timeout configured.');
         }
 
