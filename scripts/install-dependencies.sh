@@ -3,6 +3,7 @@
 FRAMEWORK=${1:-'laravel'}
 VERSION=${2:-'10.*'}
 HORIZON=${3:-'1'}
+COMPOSER_SWITCHES=${4:-''}
 
 cp composer.json composer.json.org
 
@@ -20,7 +21,7 @@ fi
 
 cat composer.json
 
-composer update
+composer update ${COMPOSER_SWITCHES} --prefer-dist --no-interaction
 
 cp composer.json.org composer.json
 rm composer.json.org

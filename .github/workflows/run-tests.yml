@@ -46,7 +46,7 @@ jobs:
           auto-start: "false"
 
       - name: Install dependencies
-        run: ./scripts/install-dependencies.sh "${{ matrix.framework }}" "${{ matrix.laravel-version }}" "${{ matrix.horizon }}"
+        run: ./scripts/install-dependencies.sh "${{ matrix.framework }}" "${{ matrix.laravel-version }}" "${{ matrix.horizon }}" "--${{ matrix.dependency-version }}"
 
       - name: Start up cluster
         run: SUPERVISE=no ./start-cluster.sh || { cat ./cluster/*.log; false; }
