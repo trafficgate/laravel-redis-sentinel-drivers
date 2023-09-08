@@ -2,12 +2,8 @@
 
 docker-compose up -d
 
-docker-compose exec php-8.0 sh -c "./scripts/run-test-locally.sh 'laravel' '6.*' '1' '--prefer-lowest'"
-docker-compose exec php-8.0 sh -c "./scripts/run-test-locally.sh 'laravel' '6.*' '1' '--prefer-stable'"
 docker-compose exec php-8.0 sh -c "./scripts/run-test-locally.sh 'laravel' '6.*' '0' '--prefer-lowest'"
 docker-compose exec php-8.0 sh -c "./scripts/run-test-locally.sh 'laravel' '6.*' '0' '--prefer-stable'"
-docker-compose exec php-8.0 sh -c "./scripts/run-test-locally.sh 'laravel' '7.*' '1' '--prefer-lowest'"
-docker-compose exec php-8.0 sh -c "./scripts/run-test-locally.sh 'laravel' '7.*' '1' '--prefer-stable'"
 docker-compose exec php-8.0 sh -c "./scripts/run-test-locally.sh 'laravel' '7.*' '0' '--prefer-lowest'"
 docker-compose exec php-8.0 sh -c "./scripts/run-test-locally.sh 'laravel' '7.*' '0' '--prefer-stable'"
 docker-compose exec php-8.0 sh -c "./scripts/run-test-locally.sh 'laravel' '8.*' '1' '--prefer-lowest'"
