@@ -11,7 +11,7 @@ jobs:
         php: [8.0, 8.1, 8.2]
         dependency-version: [prefer-lowest, prefer-stable]
         framework: [laravel, lumen]
-        laravel-version: ["6.*", "7.*", "8.*", "9.*", 10.*"]
+        laravel-version: ["6.*", "7.*", "8.*", "9.*", "10.*"]
         horizon: [0, 1]
         exclude:
           # lumen doesn't support horizon
