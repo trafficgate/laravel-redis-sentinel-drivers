@@ -38,24 +38,8 @@ jobs:
         with:
           auto-start: "false"
 
-      - name: Setup dependencies
-        run: |
-          if [ "${{ matrix.framework }}" == "laravel" ]; then
-              composer remove --dev --no-update "laravel/lumen-framework"
-              composer require --dev --no-update "laravel/framework:${{ matrix.laravel-version }}"
-          elif [ "${{ matrix.framework }}" == "lumen" ]; then
-              composer remove --dev --no-update "laravel/framework"
-              composer require --dev --no-update "laravel/lumen-framework:${{ matrix.laravel-version }}"
-          fi
-
-          if [ "${{ matrix.horizon }}" == "0" ]; then
-              composer remove --dev --no-update "laravel/horizon"
-          fi
-
-          cat composer.json
-
       - name: Install dependencies
-        run: composer update --${{ matrix.dependency-version }} --prefer-dist --no-interaction
+        run: ./scripts/install-dependencies.sh "${{ matrix.framework }}" "${{ matrix.laravel-version }}" "${{ matrix.horizon }}"
 
       - name: Start up cluster
         run: SUPERVISE=no ./start-cluster.sh || { cat ./cluster/*.log; false; }
