@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -eux
 
 FRAMEWORK=${1:-'laravel'}
 VERSION=${2:-'10.*'}
