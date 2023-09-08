@@ -1,10 +1,11 @@
+.phpunit.result.cache
 build/
 cluster/
-docs/
-vendor/
-composer.phar
 composer.lock
+composer.phar
 docker-compose.override.yml
+docs/
 phpcs.xml
 phpspec.yml
 phpunit.xml
+vendor/
