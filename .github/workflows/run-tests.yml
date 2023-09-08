@@ -57,20 +57,4 @@ jobs:
           echo "::add-matcher::${{ runner.tool_cache }}/phpunit.json";
 
       - name: Execute tests
-        run: |
-          EXCLUDED_GROUPS=()
-
-          if [ "${{ matrix.framework }}" == "lumen" ]; then
-              EXCLUDED_GROUPS+=(laravel)
-          fi
-
-          if [ "${{ matrix.horizon }}" == "0" ]; then
-              EXCLUDED_GROUPS+=(horizon)
-          fi
-
-          EXCLUDE_GROUP_SWITCH="--exclude-group $(IFS=","; echo ${EXCLUDED_GROUPS[*]})"
-          if [ "${EXCLUDE_GROUP_SWITCH}" == "--exclude-group " ]; then
-              EXCLUDE_GROUP_SWITCH=''
-          fi
-
-          vendor/bin/phpunit ${EXCLUDE_GROUP_SWITCH}
+        run: ./scripts/phpunit.sh "${{ matrix.framework }}" "${{ matrix.laravel-version }}" "${{ matrix.horizon }}"
