@@ -17,6 +17,8 @@ jobs:
           # lumen doesn't support horizon
           - framework: lumen
             horizon: 1
+          - framework: lumen
+            laravel-version: "6.*"
           - laravel-version: "6.*"
             php: 8.1
           - laravel-version: "6.*"
