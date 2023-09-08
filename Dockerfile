@@ -3,11 +3,21 @@ ARG PHP_VERSION=8.2
 FROM php:${PHP_VERSION}
 
 # Install git and zip for Composer
+# Install redis for testing
 RUN apt-get update \
  && apt-get install -y \
     git \
+    redis \
     unzip \
     zip \
+ && apt-get clean \
+ && rm -rf /var/lib/apt/lists/*
+
+# Start cluster
+COPY start-cluster.sh /
+RUN apt-get update \
+ && apt-get install -y \
+    redis \
  && apt-get clean \
  && rm -rf /var/lib/apt/lists/*
 
@@ -21,3 +31,5 @@ RUN curl -L https://github.com/mlocati/docker-php-extension-installer/releases/l
 
 # Install composer
 COPY --from=composer:latest /usr/bin/composer /usr/local/bin/composer
+
+ENTRYPOINT /start-cluster.sh

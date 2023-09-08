@@ -1,32 +1,14 @@
 services:
 
-  cluster:
-    image: redis:alpine
-    entrypoint: ./start-cluster.sh
-    working_dir: /project
-    environment:
-      BIND_ADDRESS: "0.0.0.0"
-      SENTINEL_PORTS: "26379-26381"
-      REDIS_GROUP_1: "service1 6379-6381"
-      REDIS_GROUP_2: "service2 6382-6384"
-      LOGGING: "yes"
-    expose:
-      - "6379-6384"
-      - "26379-26381"
-    volumes:
-      - ./:/project
-
   php-8.2:
     build:
       args:
         PHP_VERSION: 8.2
       context: .
-    depends_on:
-      - cluster
-    entrypoint: sleep infinity
     working_dir: /app
     environment:
-      TEST_REDIS_SENTINEL_HOST: "cluster:26379,cluster:26380,cluster:26381"
+      WORKDIR: ./cluster/8.2
+      LOGGING: yes
     volumes:
       - ./:/app
 
@@ -35,12 +17,10 @@ services:
       args:
         PHP_VERSION: 8.1
       context: .
-    depends_on:
-      - cluster
-    entrypoint: sleep infinity
     working_dir: /app
     environment:
-      TEST_REDIS_SENTINEL_HOST: "cluster:26379,cluster:26380,cluster:26381"
+      WORKDIR: ./cluster/8.1
+      LOGGING: yes
     volumes:
       - ./:/app
 
@@ -49,11 +29,9 @@ services:
       args:
         PHP_VERSION: 8.0
       context: .
-    depends_on:
-      - cluster
-    entrypoint: sleep infinity
     working_dir: /app
     environment:
-      TEST_REDIS_SENTINEL_HOST: "cluster:26379,cluster:26380,cluster:26381"
+      WORKDIR: ./cluster/8.0
+      LOGGING: yes
     volumes:
       - ./:/app
